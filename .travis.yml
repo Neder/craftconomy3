@@ -4,22 +4,7 @@ jdk:
 - oraclejdk8
 services: mysql
 before_install:
-- openssl aes-256-cbc -k "$opensslkey" -in key.gpg.enc -out key.gpg -d
 - mysql -e 'create database craftconomy;'
 script: ./gradlew -Dmysql=true && ./gradlew
 after_success:
-- '[[ $TRAVIS_PULL_REQUEST == false ]] && [[ $TRAVIS_REPO_SLUG == greatman/craftconomy3
-  ]] && [[ $TRAVIS_BRANCH == master ]] && ./gradlew uploadArchives'
-notifications:
-  email: false
-  on_start: true
-  webhooks:
-    - http://n.tkte.ch/h/532/Xo4RyovGi5OccQTo2cOb5Xlf
-env:
-  global:
-  - secure: EBZCH5tIhdY4m1Jf/4oeurfXUV3R9d6bDwxnbTIke88nMPKoYV48V4a1cObiBXbYrV4ivWJqqbfTHv/f7cPMzwCHc7fT2cfjxLCOsVXzyJhAk49RMlQFyfA8dyb+UKi3W20PJfJ/itJJLlnFOTUBVeiHUGp8uTBMa0qH4c3oxNo=
-  - secure: dvpFZ7DH3HWDb20nD4kf2SfdVWynRFBRyhiwnwfpfhbTwr4vCGSN9PqQjT985aMknN8va4L9Bx43RmQ5xXIzHPWyqkD/MzqN/PtZk4eoH7mtkovDtUb+84GqxjjX8P0GojQNulyxekQsis/CyLXnjD+pHVwfR9vA0w7ZQIszdLA=
-  - secure: gyjOwsFfhTAnJUi8iK2X6Y5dCnyKWWw1uhOCJVMxaDdctJtrsdUCbOsfE5KxIZrWGFaVnMyoYa4df2lyfmUfB0ZJy0v+k3Jh747BdW5Wr3h7QQGZkY0CqPLX+2Ttqd9j3aa5Yv2cq5VzU8ViE5nA3/zukaiH3VP4/+mLVtGmMjA=
-  - secure: GPtF+XT7He4FL2vwhL5xCFmqiPaD8GDPdadRL2KOta25qRyR4qQo/NmbpyMqzYN8PNj/F0pzs9b1h/lAYHQNrsrEy0knaFoo8Fyp5CcnHrCV4iLYptvQkT6zZQC68cdUzUOX2FVoV7CUwmae1RZhpv4BJJltdTrHtAXE3IoOfVI=
-  - secure: kDv/cw8Bp82i4mjHIjnVuaQbP+N8HFIL6FhQM68vc/leCBjWFWIN1TJBsHTRSOeS6DWaD8DjSatomaToFK5Rh73L+i3OnhRmHZze/9OJdzbqQeOFLV36GRDuo7ZAxHsEH2LFyCmJFNyqghm8V/4/vfgWcNlHJW6BjwksIf5ARIg=
-  - secure: kJtOq45qJ8ZyJx2J8eJQn75bdkHYI6BLuqR5c5IbbF3PoKmXTIznOKu75cQ6amHYk635jDtGBrB0DON26Vxd1R906FKjPFaGB23kXAK3eBPP0RpmIZc7Q14xRFDp4oOVrHnMUpmMD6wISqweoYyzhWAW1x+4I0KNBxQO3oKmjH8=
+- 'tree /home/travis/Neder/craftconomy3'
