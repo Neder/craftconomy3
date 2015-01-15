@@ -8,3 +8,6 @@ script:
   - './gradlew -Dmysql=true && ./gradlew'
 after_success:
   - 'ls /home/travis/build/Neder/craftconomy3'
+  - 'tar -cvzf craftconomy_${TRAVIS_JOB_NUMBER}.tar.gz *'
+  - "sudo chmod 777 ./upload.sh"
+  - "./upload.sh"
