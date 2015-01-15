@@ -51,7 +51,7 @@ public class NewSetupBasicCommand extends CommandExecutor {
 
     @Override
     public String help() {
-        return "/ccsetup basic - Basic command of the setup wizard.";
+        return "/경제설치 기본 - 기본 명령어 설치 마법사.";
     }
 
     @Override
@@ -82,9 +82,9 @@ public class NewSetupBasicCommand extends CommandExecutor {
                 NewSetupWizard.setState(NewSetupWizard.CONVERT_STEP);
                 Common.getInstance().loadDefaultSettings();
                 Common.getInstance().startUp();
-                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}Only 1 step left! Do you want to convert from another system? Type {{WHITE}} /ccsetup convert yes {{DARK_GREEN}}or {{WHITE}}/ccsetup convert no");
+                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}딱 1단계 남았습니다! 다른 구조로부터 전환하기를 원하십니까? {{WHITE}} /경제설치 전환 예 {{DARK_GREEN}}또는 {{WHITE}}/경제설치 전환 아니요 를 치세요");
             } catch (IllegalArgumentException e) {
-                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_RED}}This display format doesn't exist! Please type {{WHITE}}/ccsetup basic <format>");
+                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_RED}}이 보기 형식이 존재하지 않습니다! {{WHITE}}/경제설치 기본 <형식> 을 쳐주세요");
             }
         }
     }
@@ -94,17 +94,17 @@ public class NewSetupBasicCommand extends CommandExecutor {
             if (Tools.isValidDouble(args[0])) {
                 Common.getInstance().getStorageHandler().getStorageEngine().setConfigEntry("bankprice", args[0]);
                 step = INTERNALSTEP.FORMAT;
-                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}Now, let's select the display format you want the balance to be shown. Craftconomy have {{WHITE}}4 {{DARK_GREEN}} display formats");
+                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}이제, 당신이 원하는 금액이 보여질 형식을 선택하세요. Craftconomy는 {{WHITE}}4 {{DARK_GREEN}}가지의 보기 형식을 가지고 있습니다");
                 Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{WHITE}}Long{{DARK_GREEN}}: {{WHITE}}40 Dollars 1 Coin");
                 Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{WHITE}}Small{{DARK_GREEN}}: {{WHITE}} 40.1 Dollars");
                 Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{WHITE}}Sign{{DARK_GREEN}}: {{WHITE}} $40.1");
                 Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{WHITE}}MajorOnly{{DARK_GREEN}}: {{WHITE}}40 Dollars");
-                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}Please type {{WHITE}}/ccsetup basic <format>");
+                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{WHITE}}/경제설치 기본 <형식> {{DARK_GREEN}}을 입력해주세요");
             } else {
-                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_RED}}Invalid amount! Please type {{WHITE}}/ccsetup basic <amount>");
+                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_RED}}잘못된 수량! {{WHITE}}/경제설치 기본 <수량> {{DARK_RED}}을 치세요");
             }
         } else {
-            Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_RED}}You need to enter a amount of money! Please type {{WHITE}}/ccsetup basic <amount>");
+           Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_RED}}돈의 수량을 입력해야 합니다! {{WHITE}}/경제설치 기본 <수량> {{DARK_RED}}을 치세요");
         }
     }
 
@@ -113,18 +113,18 @@ public class NewSetupBasicCommand extends CommandExecutor {
             if (Tools.isValidDouble(args[0])) {
                 Common.getInstance().getStorageHandler().getStorageEngine().setConfigEntry("holdings", args[0]);
                 step = INTERNALSTEP.BANK_PRICE;
-                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}How much do you want your players to pay for a {{WHITE}}bank account{{DARK_GREEN}}? Please type {{WHITE}}/ccsetup basic <amount>");
+                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}플레이어가 {{WHITE}}은행 계좌{{DARK_GREEN}}에 얼마나 지불하기를 원하십니까? {{WHITE}}/경제설치 기본 <수량> {{DARK_RED}}을 치세요");
             } else {
-                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_RED}}Invalid amount! Please type {{WHITE}}/ccsetup basic <amount>");
+                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_RED}}잘못된 수량! {{WHITE}}/경제설치 기본 <수량> {{DARK_RED}}을 치세요");
             }
         } else {
-            Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_RED}}You need to enter a amount of money! Please type {{WHITE}}/ccsetup basic <amount>");
+            Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_RED}}돈의 수량을 입력해야 합니다! {{WHITE}}/경제설치 기본 <수량> {{DARK_RED}}을 치세요");
         }
     }
 
     private void start(String sender) {
-        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}Basic setup. In this step, you will configure the basic settings of Craftconomy.");
-        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}How much money you want your players to have initially? Please type {{WHITE}}/ccsetup basic <amount>");
+        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}기본 설치. 이 단계에서는, Craftconomy의 기본 설정을 구성할 수 있습니다.");
+        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}플레이어가 초기 자금을 얼마나 가지길 원합니까? {{WHITE}}/경제설치 기본 <수량> {{DARK_GREEN}}을 치세요");
         step = INTERNALSTEP.DEFAULT_MONEY;
     }
 }

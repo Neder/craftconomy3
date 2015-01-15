@@ -35,7 +35,7 @@ public class NewSetupDatabaseCommand extends CommandExecutor {
     }
 
     private static final Map<String, String> VALUES = new HashMap<String, String>();
-    private static final String ERROR_MESSAGE = "{{DARK_RED}}A error occured. The error is: {{WHITE}}%s";
+    private static final String ERROR_MESSAGE = "{{DARK_RED}}오류가 발생했습니다. 오류는: {{WHITE}}%s";
     private static final String CONFIG_NODE = "System.Database.Type";
     private INTERNALSTEP step = INTERNALSTEP.START;
 
@@ -52,7 +52,7 @@ public class NewSetupDatabaseCommand extends CommandExecutor {
 
     @Override
     public String help() {
-        return "/ccsetup database - Database step for setup wizard.";
+        return "/경제설치 데이터베이스 - 데이터베이스 단계 설치 마법사.";
     }
 
     @Override
@@ -80,13 +80,13 @@ public class NewSetupDatabaseCommand extends CommandExecutor {
             if ("mysql".equalsIgnoreCase(args[0])) {
                 step = INTERNALSTEP.MYSQL;
                 Common.getInstance().getMainConfig().setValue(CONFIG_NODE, "mysql");
-                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}You selected {{WHITE}}MySQL{{DARK_GREEN}}. Please type {{WHITE}}/ccsetup database address <Your host>");
+                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{WHITE}}MySQL{{DARK_GREEN}}을 선택했습니다. {{WHITE}}/경제설치 데이터베이스 주소 <호스트> {{DARK_GREEN}}를 치세요");
             } else if ("h2".equalsIgnoreCase(args[0])) {
                 step = INTERNALSTEP.H2;
                 h2(sender);
             } else {
-                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_RED}}Invalid value!");
-                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}Please type {{WHITE}}/ccsetup database <mysql/h2>");
+                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_RED}}올바르지 않은 값!");
+                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{WHITE}}/경제설치 데이터베이스 <mysql/h2> {{DARK_GREEN}}를 치세요");
             }
         }
     }
@@ -99,24 +99,24 @@ public class NewSetupDatabaseCommand extends CommandExecutor {
 
     private void mysql(String sender, String[] args) {
         if (args.length == 2) {
-            if ("address".equalsIgnoreCase(args[0])) {
+            if ("주소".equalsIgnoreCase(args[0])) {
                 VALUES.put("address", args[1]);
                 Common.getInstance().getMainConfig().setValue("System.Database.Address", args[1]);
-                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}Alright! Please type {{WHITE}}/ccsetup database port <Your port> {{DARK_GREEN}}to set your MySQL port (Usually 3306)");
-            } else if ("port".equalsIgnoreCase(args[0])) {
+                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}모두 좋습니다! {{WHITE}}/경제설치 데이터베이스 포트 <포트> {{DARK_GREEN}}로 MySQL 포트를 입력하세요 (보통 3306입니다)");
+            } else if ("포트".equalsIgnoreCase(args[0])) {
                 if (Tools.isInteger(args[1])) {
                     int port = Integer.parseInt(args[1]);
                     VALUES.put("port", args[1]);
                     Common.getInstance().getMainConfig().setValue("System.Database.Port", port);
-                    Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}Saved! Please type {{WHITE}}/ccsetup database username <Username> {{DARK_GREEN}}to set your MySQL username");
+                    Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}저장됨! {{WHITE}}/경제설치 데이터베이스 사용자이름 <사용자이름> {{DARK_GREEN}}으로  MySQL 사용자 이름을 입력하세요");
                 } else {
-                    Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_RED}}Invalid port!");
+                    Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_RED}}올바르지 않은 포트!");
                 }
-            } else if ("username".equalsIgnoreCase(args[0])) {
+            } else if ("사용자이름".equalsIgnoreCase(args[0])) {
                 VALUES.put("username", args[1]);
                 Common.getInstance().getMainConfig().setValue("System.Database.Username", args[1]);
-                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}Saved! Please type {{WHITE}}/ccsetup database password <Password> {{DARK_GREEN}}to set your MySQL password (enter \"\" for none)");
-            } else if ("password".equalsIgnoreCase(args[0])) {
+                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}저장됨! {{WHITE}}/경제설치 데이터베이스 비밀번호 <비밀번호> {{DARK_GREEN}}로 MySQL 비밀번호를 입력하세요 (없으면 \"\" 를 입력하세요)");
+            } else if ("비밀번호".equalsIgnoreCase(args[0])) {
                 if (args[1].equals("''") || args[1].equals("\"\"")) {
                     VALUES.put("password", "");
                     Common.getInstance().getMainConfig().setValue("System.Database.Password", "");
@@ -124,15 +124,15 @@ public class NewSetupDatabaseCommand extends CommandExecutor {
                     VALUES.put("password", args[1]);
                     Common.getInstance().getMainConfig().setValue("System.Database.Password", args[1]);
                 }
-                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}Saved! Please type {{WHITE}}/ccsetup database db <Database Name> {{DARK_GREEN}}to set your MySQL database.");
+                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}저장됨! {{WHITE}}/경제설치 데이터베이스 db <데이터베이스 이름> {{DARK_GREEN}}으로 MySQL 데이터베이스를 입력하세요.");
             } else if ("db".equalsIgnoreCase(args[0])) {
                 VALUES.put("db", args[1]);
                 Common.getInstance().getMainConfig().setValue("System.Database.Db", args[1]);
-                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}Saved! Please type {{WHITE}}/ccsetup database prefix <Prefix> {{DARK_GREEN}}to set your table prefix (If not sure, put cc3_).");
-            } else if ("prefix".equalsIgnoreCase(args[0])) {
+                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}저장됨! {{WHITE}}/경제설치 데이터베이스 접두사 <접두사> {{DARK_GREEN}}로 데이블의 접두사를 입력하세요(확실하지 않으면, cc3_ 를 입력하세요).");
+            } else if ("접두사".equalsIgnoreCase(args[0])) {
                 VALUES.put("prefix", args[1]);
                 Common.getInstance().getMainConfig().setValue("System.Database.Prefix", args[1]);
-                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}Done! Please wait while the database is initializing.");
+                Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}완료! 데이터베이스를 초기값으로 설정하는 동안 기다려주세요.");
             }
         }
 
@@ -145,8 +145,8 @@ public class NewSetupDatabaseCommand extends CommandExecutor {
 
     private void done(String sender) {
         Common.getInstance().initializeCurrency();
-        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}Alright! Welcome to Craftconomy! We use a Multi-Currency system. I need you to write the settings for the default currency.");
-        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}First, let's configure the {{WHITE}}main currency name {{DARK_GREEN}}(Ex: {{WHITE}}Dollar{{DARK_GREEN}}). Type {{WHITE}}/ccsetup currency name <Name>");
+        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}모두 좋습니다! Craftconomy에 오신것을 환영합니다! 우리는 다중-통화 구조를 사용합니다. 기본 통화를 위한 설정 작성이 필요합니다.");
+        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}맨 먼저, {{WHITE}}주오 통화 이름{{DARK_GREEN}}을 구성합시다 (Ex: {{WHITE}}Dollar{{DARK_GREEN}}). {{WHITE}}/경제설치 통화 이름 <이름> {{DARK_GREEN}}을 쳐주세요");
         NewSetupWizard.setState(NewSetupWizard.CURRENCY_STEP);
     }
 }

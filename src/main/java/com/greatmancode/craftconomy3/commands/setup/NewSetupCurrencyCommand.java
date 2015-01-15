@@ -55,13 +55,13 @@ public class NewSetupCurrencyCommand extends CommandExecutor {
                 sign(sender, args[1]);
             }
         } catch (IllegalArgumentException e) {
-            Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_RED}}Invalid sub-step! Please write a valid one.");
+            Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_RED}}올바르지 않은 하위-단계! 올바른거 하나를 작성하세요.");
         }
     }
 
     @Override
     public String help() {
-        return "/ccsetup currency - Configure the first currency";
+        return "/경제설치 통화 - 첫번째 통화 구성";
     }
 
     @Override
@@ -86,25 +86,25 @@ public class NewSetupCurrencyCommand extends CommandExecutor {
 
     private void name(String sender, String name) {
         map.put("name", name);
-        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}Now, let's configure the currency name but in {{WHITE}}Plural {{DARK_GREEN}}(Ex: {{WHITE}}Dollars{{DARK_GREEN}}). Please type {{WHITE}}/ccsetup currency nameplural <Plural>");
+        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}이제, {{WHITE}}복수형{{DARK_GREEN}}에 대한 통화 이름을 구성합시다 (Ex: {{WHITE}}Dollars{{DARK_GREEN}}). {{WHITE}}/경제설치 통화 nameplural <복수형> {{DARK_GREEN}}을 치세요");
         done(sender);
     }
 
     private void namePlural(String sender, String namePlural) {
         map.put("nameplural", namePlural);
-        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}Now, let's configure the currency name but for the {{WHITE}}minor {{DARK_GREEN}}(Ex: {{WHITE}}Coin{{DARK_GREEN}}). Please type {{WHITE}}/ccsetup currency minor <Minor>");
+        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}이제, {{WHITE}}소수점{{DARK_GREEN}}에 대한 통화 이름을 구성합시다 (Ex: {{WHITE}}Coin{{DARK_GREEN}}). {{WHITE}}/경제설치 통화 minor <소수점> {{DARK_GREEN}}을 치세요");
         done(sender);
     }
 
     private void minor(String sender, String minor) {
         map.put("minor", minor);
-        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}Now, let's configure the currency name but for the {{WHITE}}minor in plural {{DARK_GREEN}}(Ex: {{WHITE}}Coins{{DARK_GREEN}}). Please type {{WHITE}}/ccsetup currency minorplural <Minor plural>");
+        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}이제, {{WHITE}}소수점 복수형{{DARK_GREEN}}에 대한 통화 이름을 구성합시다 (Ex: {{WHITE}}Coins{{DARK_GREEN}}). {{WHITE}}/경제설치 통화 minorplural <소수점 복수형> {{DARK_GREEN}}을 치세요");
         done(sender);
     }
 
     private void minorPlural(String sender, String minorPlural) {
         map.put("minorplural", minorPlural);
-        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}Finally, let's put a {{WHITE}}sign {{DARK_GREEN}}on that currency (Ex: {{WHITE}}$ {{DARK_GREEN}}). Please type {{WHITE}}/ccsetup currency sign <Sign>");
+        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}마지막으로, 통화의 {{WHITE}}표식(기호){{DARK_GREEN}}을 넣습니다 (Ex: {{WHITE}}$ {{DARK_GREEN}}). {{WHITE}}/경제설치 통화 sign <표식> {{DARK_GREEN}}을 치세요");
         done(sender);
     }
 
@@ -118,7 +118,7 @@ public class NewSetupCurrencyCommand extends CommandExecutor {
             Currency currency = Common.getInstance().getCurrencyManager().addCurrency(map.get("name"), map.get("nameplural"), map.get("minor"), map.get("minorplural"), map.get("sign"), true);
             Common.getInstance().getCurrencyManager().setDefault(currency);
             Common.getInstance().getCurrencyManager().setDefaultBankCurrency(currency);
-            Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}We are done for that step! Only 2 remaining! Please type {{WHITE}}/ccsetup basic");
+            Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}우리는 이 단계를 마쳤습니다! 딱 2단계 남았습니다! {{WHITE}}/경제설치 기본 {{DARK_GREEN}}을 치세요");
             NewSetupWizard.setState(NewSetupWizard.BASIC_STEP);
         }
     }

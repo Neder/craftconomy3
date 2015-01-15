@@ -32,7 +32,7 @@ public class NewSetupMainCommand extends CommandExecutor {
 
     @Override
     public String help() {
-        return "/ccsetup - Start the setup wizard.";
+        return "/경제설치 - 설치 마법사를 시작합니다.";
     }
 
     @Override
@@ -56,10 +56,10 @@ public class NewSetupMainCommand extends CommandExecutor {
     }
 
     private void start(String sender) {
-        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}Welcome to the {{WHITE}}Craftconomy 3 {{DARK_GREEN}} setup wizard!");
-        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}I will help you configure {{WHITE}}Craftconomy {{DARK_GREEN}}like you want!");
-        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}First, I need to know what kind of database you want to use. If you want a {{WHITE}}flatfile {{DARK_GREEN}}database, I recommend {{WHITE}}H2.");
-        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}Please type {{WHITE}}/ccsetup database <mysql/h2>");
+        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{WHITE}}Craftconomy 3 {{DARK_GREEN}} 설치 마법사에 오신 것을 환영합니다!");
+        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}저는 당신이 {{WHITE}}Craftconomy {{DARK_GREEN}}를 당신이 원하는 대로 구성하도록 도와줍니다!");
+        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{DARK_GREEN}}맨 먼저, 당신이 사용하길 원하는 데이터베이스 종류를 알기를 원합니다. 만약 {{WHITE}}flatfile {{DARK_GREEN}}데이터베이스를 사용하는 것을 원하신다면, 저는 {{WHITE}}H2 {{DARK_GREEN}}를 권장합니다.");
+        Common.getInstance().getServerCaller().getPlayerCaller().sendMessage(sender, "{{WHITE}}/경제설치 데이터베이스 <mysql/h2> {{DARK_GREEN}}를 쳐주세요");
         NewSetupWizard.setState(NewSetupWizard.DATABASE_STEP);
     }
 }
